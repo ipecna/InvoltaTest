@@ -14,6 +14,10 @@
 		E7D9875927902842005F4819 /* InvoltaTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7D9875727902842005F4819 /* InvoltaTest.xcdatamodeld */; };
 		E7D9875B27902843005F4819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D9875A27902843005F4819 /* Assets.xcassets */; };
 		E7D9875E27902843005F4819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7D9875C27902843005F4819 /* LaunchScreen.storyboard */; };
+		E7D9876827902877005F4819 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9876727902877005F4819 /* TestModel.swift */; };
+		E7D9876A2790287E005F4819 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D987692790287E005F4819 /* TestData.swift */; };
+		E7D9876F27902933005F4819 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9876E27902933005F4819 /* NetworkManager.swift */; };
+		E7D9877127902BB5005F4819 /* WeatherManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9877027902BB5005F4819 /* WeatherManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		E7D9875A27902843005F4819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7D9875D27902843005F4819 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7D9875F27902843005F4819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7D9876727902877005F4819 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		E7D987692790287E005F4819 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		E7D9876E27902933005F4819 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E7D9877027902BB5005F4819 /* WeatherManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,44 @@
 		E7D9874D27902842005F4819 /* InvoltaTest */ = {
 			isa = PBXGroup;
 			children = (
+				E7D9876B279028CF005F4819 /* Model */,
+				E7D9876C279028D8005F4819 /* View */,
+				E7D9876D279028DF005F4819 /* Controller */,
 				E7D9874E27902842005F4819 /* AppDelegate.swift */,
 				E7D9875027902842005F4819 /* SceneDelegate.swift */,
-				E7D9875227902842005F4819 /* ViewController.swift */,
-				E7D9875427902842005F4819 /* Main.storyboard */,
 				E7D9875A27902843005F4819 /* Assets.xcassets */,
-				E7D9875C27902843005F4819 /* LaunchScreen.storyboard */,
 				E7D9875F27902843005F4819 /* Info.plist */,
 				E7D9875727902842005F4819 /* InvoltaTest.xcdatamodeld */,
 			);
 			path = InvoltaTest;
+			sourceTree = "<group>";
+		};
+		E7D9876B279028CF005F4819 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E7D9876727902877005F4819 /* TestModel.swift */,
+				E7D987692790287E005F4819 /* TestData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E7D9876C279028D8005F4819 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E7D9875C27902843005F4819 /* LaunchScreen.storyboard */,
+				E7D9875427902842005F4819 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E7D9876D279028DF005F4819 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E7D9875227902842005F4819 /* ViewController.swift */,
+				E7D9876E27902933005F4819 /* NetworkManager.swift */,
+				E7D9877027902BB5005F4819 /* WeatherManagerDelegate.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +180,10 @@
 				E7D9875327902842005F4819 /* ViewController.swift in Sources */,
 				E7D9875927902842005F4819 /* InvoltaTest.xcdatamodeld in Sources */,
 				E7D9874F27902842005F4819 /* AppDelegate.swift in Sources */,
+				E7D9876827902877005F4819 /* TestModel.swift in Sources */,
+				E7D9876F27902933005F4819 /* NetworkManager.swift in Sources */,
+				E7D9877127902BB5005F4819 /* WeatherManagerDelegate.swift in Sources */,
+				E7D9876A2790287E005F4819 /* TestData.swift in Sources */,
 				E7D9875127902842005F4819 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
