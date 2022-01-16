@@ -27,7 +27,6 @@ class NetworkManager {
                 if let safeData = data {
                     guard let self = self else { return }
                     guard let testData = self.parseJSON(safeData) else { return }
-                    
                     //go to main thread so we can update the UI
                     DispatchQueue.main.async {
                         self.delegate?.didLoadData(self, data: testData)
@@ -35,7 +34,6 @@ class NetworkManager {
                 }
             } else {
                 guard let self = self else { return }
-                
                 //go to main thread so we can update the UI
                 DispatchQueue.main.async {
                     self.delegate?.didFailWithError(error: error!)

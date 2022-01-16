@@ -10,8 +10,8 @@ import UIKit
 class ViewController: UITableViewController {
     
     let networkManager = NetworkManager()
-    var data = [String]()
-    var reversedData = [String]()
+    var data = [String]() // all the data from server
+    var reversedData = [String]() // data to populate table view
     
     let refresh: UIRefreshControl = {
         let refresh = UIRefreshControl()
@@ -27,35 +27,41 @@ class ViewController: UITableViewController {
         networkManager.fetchData()
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        reversedData.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
-        content.text = reversedData[indexPath.row]
-        cell.contentConfiguration = content
-        return cell
-    }
+    //MARK: - Pull to refresh
     
     @objc func refreshData() {
         networkManager.offset += 20
         networkManager.fetchData(with: networkManager.offset)
         refreshControl?.endRefreshing()
     }
-    
+  
+    //MARK: - Avoid pull to refresh
     //this method allows us to identify the moment when user is near the top of the tableView and fetch data without pull to refresh
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("The current Y offset is \(scrollView.contentOffset.y)")
+        //print("The current Y offset is \(scrollView.contentOffset.y)")
         let rowHeight = tableView.rowHeight
         //print(rowHeight)
         if scrollView.contentOffset.y <= -rowHeight {
             refreshData()
         }
     }
+    
+    //MARK: - Table View Data Source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        reversedData.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = reversedData[indexPath.row]
+        cell.contentConfiguration = content
+        return cell
+    }
 }
+
+//MARK: - Network Manager Delegate
 
 extension ViewController: NetworkManagerDelegate {
     
@@ -67,8 +73,8 @@ extension ViewController: NetworkManagerDelegate {
             // this helps us to scroll from bottom, although not the best solution
             let indexPath = IndexPath(row: data.messages.count - 1, section: 0)
             tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-            
         } else {
+            // this gets called when we don't have any more messages
             let ac = UIAlertController(title: "Sorry", message: "It seems there are no more messages", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(ac, animated: true)
