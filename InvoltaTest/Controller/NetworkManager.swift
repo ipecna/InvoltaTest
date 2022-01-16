@@ -11,6 +11,7 @@ class NetworkManager {
     
     let dataURL = "https://a-prokudin.node-api.numerology.dev-03.h.involta.ru/getMessages?offset="
     var delegate: NetworkManagerDelegate?
+    //this is basically the index of the first message we want to load
     var offset = 0
     
     func fetchData(with offset: Int = 0) {
@@ -27,17 +28,18 @@ class NetworkManager {
                     guard let self = self else { return }
                     guard let testData = self.parseJSON(safeData) else { return }
                     
+                    //go to main thread so we can update the UI
                     DispatchQueue.main.async {
                         self.delegate?.didLoadData(self, data: testData)
                     }
-                    
                 }
             } else {
                 guard let self = self else { return }
+                
+                //go to main thread so we can update the UI
                 DispatchQueue.main.async {
                     self.delegate?.didFailWithError(error: error!)
                 }
-                
             }
         }
         task.resume()
@@ -50,6 +52,7 @@ class NetworkManager {
             let results = data.result
             return TestModel(messages: results)
         } catch {
+            //go back to main to update UI
             DispatchQueue.main.async { [weak self] in
                 self?.delegate?.didFailWithError(error: error)
             }
