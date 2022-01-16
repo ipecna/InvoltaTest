@@ -22,6 +22,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.refreshControl = refresh
+        
         networkManager.delegate = self
         networkManager.fetchData()
     }
@@ -44,6 +45,13 @@ class ViewController: UITableViewController {
         networkManager.fetchData(with: networkManager.offset)
         refreshControl?.endRefreshing()
     }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("The current Y offset is \(scrollView.contentOffset.y)")
+        if scrollView.contentOffset.y <= -47 && scrollView.contentOffset.y > -48 {
+            refreshData()
+        }
+    }
 }
 
 extension ViewController: NetworkManagerDelegate {
@@ -54,7 +62,8 @@ extension ViewController: NetworkManagerDelegate {
             reversedData = self.data.reversed()
             tableView.reloadData()
             let indexPath = IndexPath(row: data.messages.count - 1, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            
         } else {
             let ac = UIAlertController(title: "Sorry", message: "It seems there are no more messages", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
